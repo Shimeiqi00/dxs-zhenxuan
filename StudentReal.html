@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大学生真选 - 乡选好物，真实分享</title>
+    <!-- 引入外部资源 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- 引入自定义CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Tailwind配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E7D32', // 主绿-乡土/自然
+                        secondary: '#FF8C00', // 辅橙-青春/活力
+                        light: '#F5F7F2', // 浅背景
+                        dark: '#263238', // 深文字
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    // 自定义动画关键帧
+                    keyframes: {
+                        floatUp: {
+                            '0%': { transform: 'translateY(30px)', opacity: 0 },
+                            '100%': { transform: 'translateY(0)', opacity: 1 }
+                        }
+                    },
+                    animation: {
+                        'float-up': 'floatUp 0.8s ease-out forwards',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-light text-dark font-sans">
+    <!-- 导航栏 -->
+    <nav id="navbar" class="fixed w-full top-0 z-50 bg-light/90 backdrop-blur-sm transition-all duration-300">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#home" class="flex items-center gap-2">
+                <i class="fa-solid fa-leaf text-primary text-2xl"></i>
+                <span class="text-xl font-bold text-primary">大学生真选</span>
+                <span class="text-sm text-gray-500">乡选好物</span>
+            </a>
+            <!-- 电脑端导航 -->
+            <ul class="hidden md:flex gap-8 font-medium">
+                <li><a href="#home" class="hover:text-primary transition-colors">首页</a></li>
+                <li><a href="#about" class="hover:text-primary transition-colors">关于我们</a></li>
+                <li><a href="#goods" class="hover:text-primary transition-colors">好物推荐</a></li>
+                <li><a href="#live" class="hover:text-primary transition-colors">直播专区</a></li>
+                <li><a href="#story" class="hover:text-primary transition-colors">助农故事</a></li>
+                <li><a href="#contact" class="hover:text-primary transition-colors">联系我们</a></li>
+            </ul>
+            <!-- 移动端菜单按钮 -->
+            <button id="menuBtn" class="md:hidden text-dark text-2xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <!-- 移动端导航菜单 -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white w-full shadow-md px-4 py-2">
+            <ul class="flex flex-col gap-3 py-2">
+                <li><a href="#home" class="py-2 hover:text-primary transition-colors">首页</a></li>
+                <li><a href="#about" class="py-2 hover:text-primary transition-colors">关于我们</a></li>
+                <li><a href="#goods" class="py-2 hover:text-primary transition-colors">好物推荐</a></li>
+                <li><a href="#live" class="py-2 hover:text-primary transition-colors">直播专区</a></li>
+                <li><a href="#story" class="py-2 hover:text-primary transition-colors">助农故事</a></li>
+                <li><a href="#contact" class="py-2 hover:text-primary transition-colors">联系我们</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 首页轮播 -->
+    <section id="home" class="pt-16">
+        <div class="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item">
+                    <!-- 替换为你的图片地址 -->
+                    <img src="https://vcg02.cfp.cn/creative/vcg/nowater800/new/VCG211292441644.jpg?x-oss-process=image/format,webp" alt="乡选好物，源头直供">
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-white w-full px-4">
+                        <h1 class="text-[clamp(2rem,5vw,4rem)] font-bold text-shadow mb-4 carousel-text animate-float-up">乡选好物，真实分享</h1>
+                        <p class="text-[clamp(1rem,2vw,1.5rem)] text-shadow mb-8 carousel-text animate-float-up animate-delay-200">大学生团播助农，让乡村好物走出大山</p>
+                        <a href="#live" class="btn-secondary carousel-text animate-float-up animate-delay-400">进入直播专区</a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <!-- 替换为你的图片地址 -->
+                    <img src="https://vcg05.cfp.cn/creative/vcg/nowater800/new/VCG211361349990.jpg?x-oss-process=image/format,webp" alt="亲身试用，严苛选品">
+                    
+                </div>
+                <div class="carousel-item">
+                    <!-- 替换为你的图片地址 -->
+                    <img src="https://vcg02.cfp.cn/creative/vcg/nowater800/new/VCG211486740405.jpg?x-oss-process=image/format,webp" alt="助力乡村振兴，青春力量">
+                   
+                </div>
+            </div>
+            <!-- 轮播控制按钮 -->
+            <button class="carousel-prev absolute top-1/2 left-4 -translate-y-1/2 text-white text-3xl bg-black/30 p-2 rounded-full">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="carousel-next absolute top-1/2 right-4 -translate-y-1/2 text-white text-3xl bg-black/30 p-2 rounded-full">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <!-- 轮播指示器 -->
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                <span class="carousel-dot w-3 h-3 rounded-full bg-white/50 cursor-pointer active"></span>
+                <span class="carousel-dot w-3 h-3 rounded-full bg-white/50 cursor-pointer"></span>
+                <span class="carousel-dot w-3 h-3 rounded-full bg-white/50 cursor-pointer"></span>
+            </div>
+        </div>
+
+        <!-- 核心优势 -->
+        <div class="container mx-auto px-4 py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-4">我们的核心优势</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">依托大学生群体的真实体验，打造差异化团播模式，建立消费者信任，挖掘乡土特产价值</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white rounded-xl p-6 card-hover">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-user-graduate text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">真实体验</h3>
+                    <p class="text-gray-600">团队成员来自五湖四海，对家乡土特产有亲身使用体验，分享更真实可信</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 card-hover">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-seedling text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">源头直供</h3>
+                    <p class="text-gray-600">直接对接产地农户，减少中间环节，既保证产品品质，也让农户获得更多收益</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 card-hover">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-shield-halved text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">严苛选品</h3>
+                    <p class="text-gray-600">亲身试用、品质优良、安全合规、高性价比，四重标准甄选每一款好物</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 card-hover">
+                    <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-hand-holding-heart text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">温度服务</h3>
+                    <p class="text-gray-600">7*18小时专属客服,一键退换货,极速审核退款,打消购物后顾之忧</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="bg-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row gap-12 items-center">
+                <div class="lg:w-1/2">
+                    <img src="https://vcg02.cfp.cn/creative/vcg/nowater800/new/VCG211294930919.jpg?x-oss-process=image/format,webp" alt="大学生真选团队" class="rounded-xl w-full h-auto shadow-lg">
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-4 text-primary">关于我们</h2>
+                    <p class="text-gray-600 mb-4">南京晓庄学院「三仙过海」团队打造的大学生真选项目，是基于直播电商行业痛点，结合乡村振兴政策东风的创业创新项目，专注于家乡土特产团播推广。</p>
+                    <h3 class="text-xl font-semibold mb-3">项目背景</h3>
+                    <p class="text-gray-600 mb-4">直播电商市场规模5年增长10.5倍,但投诉举报增长47.1倍，信任缺失、货不对板等问题突出；而我国丰富的土特产资源缺乏有效推广渠道，大学生群体的真实体验成为解决信任问题的核心突破口。</p>
+                    <h3 class="text-xl font-semibold mb-3">项目愿景</h3>
+                    <p class="text-gray-600 mb-6">为消费者推荐靠谱、优质的家乡土特产，创新性地助力乡村特色产品走向更广阔的市场，为乡村振兴注入青春力量，实现消费者、农户、大学生团队多方共赢。</p>
+                    <h3 class="text-xl font-semibold mb-3">政策支持</h3>
+                    <p class="text-gray-600">依托《国务院关于积极推进 “互联网 +” 行动的指导意见》《乡村全面振兴规划(2024—2027 年)》等政策，获得良好的政策发展环境。</p>
+                </div>
+            </div>
+
+            <!-- 组织架构 -->
+            <div class="mt-16">
+                <div class="text-center mb-12">
+                    <h3 class="text-2xl font-bold mb-4">高效协作的团队架构</h3>
+                    <p class="text-gray-600">专业分工，协同推进，保障项目高效运营</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                    <div class="bg-light rounded-xl p-6 text-center card-hover">
+                        <i class="fa-solid fa-sitemap text-primary text-3xl mb-4"></i>
+                        <h4 class="font-semibold mb-2">运营组</h4>
+                        <p class="text-sm text-gray-600">整体策划运营，协调各方资源</p>
+                    </div>
+                    <div class="bg-light rounded-xl p-6 text-center card-hover">
+                        <i class="fa-solid fa-microphone text-primary text-3xl mb-4"></i>
+                        <h4 class="font-semibold mb-2">主播组</h4>
+                        <p class="text-sm text-gray-600">直播推广，提升互动与转化</p>
+                    </div>
+                    <div class="bg-light rounded-xl p-6 text-center card-hover">
+                        <i class="fa-solid fa-truck-fast text-primary text-3xl mb-4"></i>
+                        <h4 class="font-semibold mb-2">供应链组</h4>
+                        <p class="text-sm text-gray-600">选品品控，保障货源与物流</p>
+                    </div>
+                    <div class="bg-light rounded-xl p-6 text-center card-hover">
+                        <i class="fa-solid fa-laptop-code text-primary text-3xl mb-4"></i>
+                        <h4 class="font-semibold mb-2">技术组</h4>
+                        <p class="text-sm text-gray-600">直播技术支持，平台维护</p>
+                    </div>
+                    <div class="bg-light rounded-xl p-6 text-center card-hover">
+                        <i class="fa-solid fa-money-bill-wave text-primary text-3xl mb-4"></i>
+                        <h4 class="font-semibold mb-2">财务组</h4>
+                        <p class="text-sm text-gray-600">财务管理，成本核算，资金安全</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 好物推荐 -->
+    <section id="goods" class="py-16 bg-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-4">真选好物推荐</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">严苛甄选四大品类，源头直供，大学生亲身试用，每一款都是家乡的味道</p>
+            </div>
+
+            <!-- 品类标签 -->
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <button class="goods-tab active px-4 py-2 rounded-full bg-primary text-white">全部好物</button>
+                <button class="goods-tab px-4 py-2 rounded-full bg-white hover:bg-primary/10 transition-colors">食品类</button>
+                <button class="goods-tab px-4 py-2 rounded-full bg-white hover:bg-primary/10 transition-colors">手工艺品类</button>
+                <button class="goods-tab px-4 py-2 rounded-full bg-white hover:bg-primary/10 transition-colors">日用品类</button>
+                <button class="goods-tab px-4 py-2 rounded-full bg-white hover:bg-primary/10 transition-colors">文化创意类</button>
+            </div>
+
+            <!-- 好物列表 -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- 食品类 -->
+                <div class="bg-white rounded-xl overflow-hidden card-hover">
+                    <img src="https://vcg05.cfp.cn/creative/vcg/nowater800/new/VCG41N1488687788.jpg?x-oss-process=image/format,webp" alt="特色农产品" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="text-xs text-secondary font-medium mb-2">食品类 | 家乡农产</div>
+                        <h3 class="font-semibold text-lg mb-2">深山原生态蜂蜜</h3>
+                        <p class="text-gray-600 text-sm mb-4">农家自养土蜂蜜,无添加,波美度42+，大学生家乡直供</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-primary font-bold">¥59.9/瓶</span>
+                            <button class="btn-primary px-4 py-1 text-sm">立即购买</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden card-hover">
+                    <img src="https://vcg02.cfp.cn/creative/vcg/nowater800/new/VCG211505189974.jpg?x-oss-process=image/format,webp" alt="特色零食" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="text-xs text-secondary font-medium mb-2">食品类 | 特色零食</div>
+                        <h3 class="font-semibold text-lg mb-2">手工红薯干</h3>
+                        <p class="text-gray-600 text-sm mb-4">农家自制，无蔗糖，软糯香甜，日晒工艺，家乡特色干货</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-primary font-bold">¥29.9/袋</span>
+                            <button class="btn-primary px-4 py-1 text-sm">立即购买</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- 手工艺品类 -->
+                <div class="bg-white rounded-xl overflow-hidden card-hover">
+                    <img src="https://vcg05.cfp.cn/creative/vcg/nowater800/new/VCG211581901362.jpg?x-oss-process=image/format,webp" alt="非遗手作" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="text-xs text-secondary font-medium mb-2">手工艺品类 | 非遗手作</div>
+                        <h3 class="font-semibold text-lg mb-2">竹编收纳篮</h3>
+                        <p class="text-gray-600 text-sm mb-4">非遗竹编工艺，纯手工制作，天然竹材，实用又美观</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-primary font-bold">¥49.9/个</span>
+                            <button class="btn-primary px-4 py-1 text-sm">立即购买</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- 文化创意类 -->
+                <div class="bg-white rounded-xl overflow-hidden card-hover">
+                    <img src="https://vcg05.cfp.cn/creative/vcg/nowater800/new/VCG41476697391.jpg?x-oss-process=image/format,webp" alt="文创产品" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="text-xs text-secondary font-medium mb-2">文化创意类 | 地域文创</div>
+                        <h3 class="font-semibold text-lg mb-2">家乡风景明信片</h3>
+                        <p class="text-gray-600 text-sm mb-4">融合家乡地域文化,原创设计,高清印刷,一套12张</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-primary font-bold">¥19.9/套</span>
+                            <button class="btn-primary px-4 py-1 text-sm">立即购买</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 查看更多 -->
+            <div class="text-center mt-10">
+                <a href="#" class="btn-secondary inline-flex items-center gap-2">
+                    查看更多好物 <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 直播专区 -->
+    <section id="live" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-4">大学生团播专区</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">产地实景直播，主播与农户同台，真实试吃试用，限时秒杀抽奖，沉浸式购物体验</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- 正在直播 -->
+                <div class="lg:col-span-2 bg-light rounded-xl overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://vcg05.cfp.cn/creative/vcg/nowater800/new/VCG211390669720.jpg?x-oss-process=image/format,webp" alt="正在直播" class="w-full h-80 object-cover">
+                        <div class="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                            正在直播
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+                            <h3 class="text-white text-xl font-semibold mb-2">产地直采专场 | 新鲜果蔬限时抢</h3>
+                            <p class="text-white/80 mb-4">主播与农户同台，现摘现发，冷链直达，农残抽检合格</p>
+                            <div class="flex items-center gap-4">
+                                <span class="text-white flex items-center gap-1"><i class="fa-solid fa-eye"></i> 1.2w</span>
+                                <span class="text-white flex items-center gap-1"><i class="fa-solid fa-gift"></i> 整点秒杀</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 flex justify-between items-center">
+                        <div class="flex items-center gap-3">
+                            <img src="https://picsum.photos/id/64/100/100" alt="主播头像" class="w-12 h-12 rounded-full object-cover border-2 border-primary">
+                            <div>
+                                <h4 class="font-semibold">乡选好物-小秦</h4>
+                                <p class="text-sm text-gray-500">家乡好物推荐官</p>
+                            </div>
+                        </div>
+                        <a href="#" class="btn-primary">进入直播间</a>
+                    </div>
+                </div>
+
+                <!-- 直播预告 -->
+                <div class="flex flex-col gap-6">
+                    <div class="bg-light rounded-xl p-6 card-hover flex gap-4">
+                        <img src="https://picsum.photos/id/139/200/200" alt="直播预告" class="w-24 h-24 object-cover rounded-lg">
+                        <div>
+                            <div class="text-xs text-gray-500 mb-1">明日 19:00 开播</div>
+                            <h4 class="font-semibold mb-2">非遗手作专场 | 匠人现场演示</h4>
+                            <p class="text-sm text-gray-600">邀请非遗传承人，现场展示手作技艺，限量手作好物</p>
+                            <button class="mt-2 text-primary text-sm font-medium">预约直播 <i class="fa-solid fa-bell"></i></button>
+                        </div>
+                    </div>
+                    <div class="bg-light rounded-xl p-6 card-hover flex gap-4">
+                        <img src="https://picsum.photos/id/225/200/200" alt="直播预告" class="w-24 h-24 object-cover rounded-lg">
+                        <div>
+                            <div class="text-xs text-gray-500 mb-1">周六 15:00 开播</div>
+                            <h4 class="font-semibold mb-2">家乡零食专场 | 大学生亲测</h4>
+                            <p class="text-sm text-gray-600">各地大学生推荐家乡零食，一站式尝遍全国特色</p>
+                            <button class="mt-2 text-primary text-sm font-medium">预约直播 <i class="fa-solid fa-bell"></i></button>
+                        </div>
+                    </div>
+                    <div class="bg-primary/10 rounded-xl p-6 text-center">
+                        <i class="fa-solid fa-calendar-week text-primary text-3xl mb-3"></i>
+                        <h4 class="font-semibold mb-2">每周3-4场助农直播</h4>
+                        <p class="text-sm text-gray-600 mb-4">结合农时、节日设置专属专场</p>
+                        <a href="#" class="text-primary font-medium text-sm">查看完整直播日历</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 助农故事 -->
+    <section id="story" class="py-16 bg-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-4">助农故事</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">每一款家乡好物背后，都有一段温暖的故事，我们用青春力量，连接乡土与城市</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl overflow-hidden card-hover">
+                    <img src="https://vcg02.cfp.cn/creative/vcg/nowater800/new/VCG41N1486837122.jpg?x-oss-process=image/format,webp" alt="助农故事1" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-semibold text-lg mb-3">深山蜂蜜的出山之路</h3>
+                        <p class="text-gray-600 text-sm mb-4">来自湘西深山的李大爷,养蜂30年,蜂蜜品质上乘却因交通不便销路狭窄,我们通过直播,让大爷的蜂蜜走进了千家万户，单场直播售出500余瓶。</p>
+                        <a href="#" class="text-primary font-medium text-sm flex items-center gap-1">阅读全文 <i class="fa-solid fa-angle-right"></i></a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden card-hover">
+                    <img src="https://vcg05.cfp.cn/creative/vcg/nowater800/new/VCG41N1275770232.jpg?x-oss-process=image/format,webp" alt="助农故事2" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-semibold text-lg mb-3">非遗竹编的新生</h3>
+                        <p class="text-gray-600 text-sm mb-4">浙西竹编非遗传承人王师傅,面临手艺无人问津的困境,我们邀请师傅走进直播间,现场演示竹编技艺,让传统手作重新被年轻人喜爱，订单量翻了3倍。</p>
+                        <a href="#" class="text-primary font-medium text-sm flex items-center gap-1">阅读全文 <i class="fa-solid fa-angle-right"></i></a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden card-hover">
+                    <img src="https://vcg02.cfp.cn/creative/vcg/nowater800/new/VCG211534941719.jpg?x-oss-process=image/format,webp" alt="助农故事3" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-semibold text-lg mb-3">红薯干撑起农家希望</h3>
+                        <p class="text-gray-600 text-sm mb-4">河南商丘的张阿姨,靠着种植红薯制作红薯干补贴家用,今年红薯大丰收却愁销路,我们的大学生主播实地直播,帮助张阿姨售出2000余斤红薯干。</p>
+                        <a href="#" class="text-primary font-medium text-sm flex items-center gap-1">阅读全文 <i class="fa-solid fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-4">联系我们</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">期待与您合作，一起助力乡村振兴，让更多家乡好物被看见</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-12 items-center justify-center">
+                <!-- 联系信息 -->
+                <div class="lg:w-1/3">
+                    <div class="bg-light rounded-xl p-8">
+                        <h3 class="font-semibold text-xl mb-6 text-primary">联系方式</h3>
+                        <div class="flex flex-col gap-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                                    <i class="fa-solid fa-phone text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">联系电话</h4>
+                                    <p class="text-gray-600">178-0263-2553</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                                    <i class="fa-solid fa-envelope text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">电子邮箱</h4>
+                                    <p class="text-gray-600">1778689938@qq.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                                    <i class="fa-solid fa-location-dot text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">团队地址</h4>
+                                    <p class="text-gray-600">江苏省南京市晓庄学院</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <h4 class="font-medium mb-3">关注我们</h4>
+                            <div class="flex gap-4">
+                                <a href="#" class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all">
+                                    <i class="fa-brands fa-douyin"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all">
+                                    <i class="fa-brands fa-weixin"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all">
+                                    <i class="fa-brands fa-xiaohongshu"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all">
+                                    <i class="fa-brands fa-kuaishou"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 留言表单 -->
+                <div class="lg:w-2/5">
+                    <form class="bg-light rounded-xl p-8 w-full">
+                        <h3 class="font-semibold text-xl mb-6 text-primary">留言咨询</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2" for="name">您的姓名</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="请输入姓名">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2" for="phone">联系电话</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="请输入电话">
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium mb-2" for="email">电子邮箱</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="请输入邮箱">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium mb-2" for="content">留言内容</label>
+                            <textarea id="content" rows="4" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="请输入您的咨询/合作需求..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary w-full">提交留言</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between gap-8 mb-8">
+                <div>
+                    <a href="#home" class="flex items-center gap-2 mb-4">
+                        <i class="fa-solid fa-leaf text-2xl"></i>
+                        <span class="text-xl font-bold">大学生真选</span>
+                    </a>
+                    <p class="text-white/80 max-w-xs">乡选好物，真实分享，大学生团播助农，为乡村振兴注入青春力量，连接产地与消费者的桥梁。</p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="font-semibold mb-4">快速导航</h4>
+                        <ul class="flex flex-col gap-2 text-white/80">
+                            <li><a href="#home" class="hover:text-white transition-colors">首页</a></li>
+                            <li><a href="#about" class="hover:text-white transition-colors">关于我们</a></li>
+                            <li><a href="#goods" class="hover:text-white transition-colors">好物推荐</a></li>
+                            <li><a href="#live" class="hover:text-white transition-colors">直播专区</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">关于项目</h4>
+                        <ul class="flex flex-col gap-2 text-white/80">
+                            <li><a href="#" class="hover:text-white transition-colors">项目介绍</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">助农故事</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">发展规划</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">团队介绍</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">服务支持</h4>
+                        <ul class="flex flex-col gap-2 text-white/80">
+                            <li><a href="#" class="hover:text-white transition-colors">购物指南</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">售后保障</a></li>
+                            <li><a href="#contact" class="hover:text-white transition-colors">联系我们</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors">合作加盟</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/20 pt-8 text-center text-white/60 text-sm">
+                <p>© 2026 大学生真选-乡选好物 版权所有 | 南京晓庄学院「三仙过海」团队出品</p>
+                
+            </div>
+        </div>
+    </footer>
+
+    <!-- 回到顶部按钮 -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-secondary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all z-50">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
